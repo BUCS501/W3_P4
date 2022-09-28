@@ -28,7 +28,6 @@ public class card_game extends AppCompatActivity {
     private Integer counter = 0;
     private int[] answer = new int[10];
     private int[] ans = new int[10];
-    private int[] correct = new int[10];
 
     public void reload() {
         Intent intent = getIntent();
@@ -94,29 +93,19 @@ public class card_game extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please enter the answer", Toast.LENGTH_LONG).show();
                 }
 
-                /*
-                else if (counter == 10){
-
-                    Gen.setEnabled(true);
-                    Toast.makeText(getApplicationContext(), "Your score is " + score.toString() + ". Let's play again", Toast.LENGTH_LONG).show();
-                    reload();
-                }
-                 */
-
                 else{
                     ans[counter] = Integer.parseInt(input.getText().toString());
 
-                    if (answer[counter] == ans[counter]) correct[counter] = 1;
-                    else correct[counter] = 0;
-
                     if (counter == 9) {
+                        if (answer[counter] == ans[counter]) score++;
                         Gen.setEnabled(true);
 
-                        for (int i = 0; i < 10; i++) correct[0] += correct[i];
-
-                        Toast.makeText(getApplicationContext(), "Your score is " + String.valueOf(correct[0]) + ". Let's play again", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Your score is " + score.toString() + ". Let's play again", Toast.LENGTH_LONG).show();
                         reload();
                     }
+
+                    if (answer[counter] == ans[counter]) score++;
+
                     counter++;
 
                     if (counter != 10) {
